@@ -15,7 +15,7 @@ ResetValueVariable(playerid)
     pDataEngkq[playerid][pGender] = -1;
 
     // bagian login register
-    pDataEngkq[playerid][IsEngkqLogin] = false;
+    pDataEngkq[playerid][IsPlayersLogin] = false;
     pDataEngkq[playerid][pLoginAttempt] = 0;
     pDataEngkq[playerid][isOfficialClient] = false;
     pDataEngkq[playerid][pVerifyCode] = 0;
@@ -57,7 +57,7 @@ Fungsi:OnCharacterDataLoaded(playerid)
 	cache_get_value_name_int(0, "height", pDataEngkq[playerid][pHeight]);
 	cache_get_value_name(0, "origin", pDataEngkq[playerid][pOrigin]);
 
-    pDataEngkq[playerid][IsEngkqLogin] = true;
+    pDataEngkq[playerid][IsPlayersLogin] = true;
     
     // Spawn Logic
     if(pDataEngkq[playerid][pLastExit] == 0 || (gettime() - pDataEngkq[playerid][pLastExit]) > 3600)
@@ -81,7 +81,7 @@ Fungsi:OnCharacterDataLoaded(playerid)
 
 stock UpdateDataPlayer(playerid)
 {
-	if(!pDataEngkq[playerid][IsEngkqLogin]) return 1;
+	if(!pDataEngkq[playerid][IsPlayersLogin]) return 1;
 
 	GetPlayerPos(playerid, pDataEngkq[playerid][pPos][0], pDataEngkq[playerid][pPos][1], pDataEngkq[playerid][pPos][2]);
 	GetPlayerFacingAngle(playerid, pDataEngkq[playerid][pPos][3]);

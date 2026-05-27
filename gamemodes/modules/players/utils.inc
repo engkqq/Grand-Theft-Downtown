@@ -98,7 +98,7 @@ stock IsValidRPName(const name[])
 
 CreateSetupCharacter(playerid)
 {
-    if(!pDataEngkq[playerid][IsEngkqLogin]) return Error(playerid, "Kamu tidak memiliki akes untuk melakukan ini!");
+    if(!pDataEngkq[playerid][IsPlayersLogin]) return Error(playerid, "Kamu tidak memiliki akes untuk melakukan ini!");
 
     SetPlayerInterior(playerid, 0);
     SetPlayerVirtualWorld(playerid, 0);
@@ -147,5 +147,13 @@ stock ShowInfo(playerid)
     new str[128];
     format(str, sizeof(str), "Tanggal: %02d/%02d/%d | Waktu: %02d:%02d:%02d", hari, bulan, tahun, jam, menit, detik);
     Info(playerid, str);
+    return 1;
+}
+
+Fungsi:LoadingObject(playerid)
+{
+    TogglePlayerControllable(playerid, false);
+    ShowPlayerInfoAction(playerid, "~y~ Grand Theft Downtown ~w~| Memuat objek sekitar...", 0);
+    SetTimerEx("DelayUnfreeze", 3000, false, "d", playerid);
     return 1;
 }

@@ -271,7 +271,7 @@ Fungsi:OnInsertCharacter(playerid)
 
     SetPlayerName(playerid, pDataEngkq[playerid][pName]);
 
-    pDataEngkq[playerid][IsEngkqLogin] = true;
+    pDataEngkq[playerid][IsPlayersLogin] = true;
     CreateSetupCharacter(playerid);
     return 1;
 }

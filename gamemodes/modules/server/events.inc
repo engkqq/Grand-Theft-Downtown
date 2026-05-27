@@ -58,7 +58,7 @@ hook OnPlayerDisconnect(playerid, reason)
 	UpdateDataPlayer(playerid);
 	SetPlayerName(playerid, pDataEngkq[playerid][pUCP]);
 
-	pDataEngkq[playerid][IsEngkqLogin] = false;
+	pDataEngkq[playerid][IsPlayersLogin] = false;
 	return 1;
 }
 
@@ -84,7 +84,7 @@ hook OnPlayerExitVehicle(playerid, vehicleid)
 
 hook OnPlayerRequestSpawn(playerid)
 {
-	if(!pDataEngkq[playerid][IsEngkqLogin])
+	if(!pDataEngkq[playerid][IsPlayersLogin])
 	{
 		SendClientMessage(playerid, COLOR_ERROR, "ERROR: Kamu tidak diizinkan menekan tombol spawn!");
 		return 0;
