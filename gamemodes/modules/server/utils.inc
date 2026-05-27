@@ -4,8 +4,7 @@ KickEx(playerid)
 	return 1;
 }
 
-forward KickPlayer(playerid);
-public KickPlayer(playerid) 
+Fungsi:KickPlayer(playerid) 
 {
 	Kick(playerid);
 	return 1;
