@@ -33,10 +33,15 @@ enum E_PLAYER_DATA{
 	pInDoor,
 	pInHouse,
 	pInBiz,
+	pInFamily,
+	
 	pInjured,
+	pFaction,
+	pFamily,
+	pVip,
 	
 	// temp variable
-	bool:IsEngkqLogin,
+	bool:IsPlayersLogin,
 	pLoginAttempt,
 	bool:isOfficialClient
 };
