@@ -27,7 +27,7 @@ ResetValueVariable(playerid)
     return 1;
 }
 
-EngkqC:OnCharacterDataLoaded(playerid)
+Fungsi::OnCharacterDataLoaded(playerid)
 {
     ShowInfo(playerid);
     PlayerLoadTime(playerid, "Succes Load Character");

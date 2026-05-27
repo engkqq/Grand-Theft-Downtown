@@ -64,7 +64,7 @@
     },
     "max_bots": 0,
     "max_players": 50,
-    "name": "GTA:DownTown | Engkq Openmp",
+    "name": "GTA:DownTown | OpenSource",
     "network": {
         "acks_limit": 3000,
         "aiming_sync_rate": 30,
@@ -109,14 +109,14 @@
             "mysql.dll"
         ],
         "main_scripts": [
-            "main-engkq"
+            "main"
         ],
         "side_scripts": []
     },
     "rcon": {
         "allow_teleport": false,
         "enable": false,
-        "password": "engkqq"
+        "password": "123123"
     },
     "sleep": 5.0,
     "use_dyn_ticks": true,
