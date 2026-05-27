@@ -37,7 +37,6 @@ stock ShowPlayerInfoAction(playerid, const action[], time_ms = 4000)
         EngkqInfoTd[playerid] = PlayerText:INVALID_TEXT_DRAW;
     }
 
-    // Membuat TextDraw baru sesuai dengan koordinat dari TextDraw Designer kamu
     EngkqInfoTd[playerid] = CreatePlayerTextDraw(playerid, 325.000, 354.000, action); 
     PlayerTextDrawLetterSize(playerid, EngkqInfoTd[playerid], 0.170, 0.999); 
     PlayerTextDrawAlignment(playerid, EngkqInfoTd[playerid], TEXT_DRAW_ALIGN_CENTER); 
