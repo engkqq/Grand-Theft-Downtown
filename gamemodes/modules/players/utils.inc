@@ -1,21 +1,27 @@
 stock ShowStats(playerid)
 {
-    new str[155], 
+    new str[350], 
         strhead[64],
         client[8];
+
     if(!pDataEngkq[playerid][isOfficialClient])
         format(client, sizeof(client), "Android");
     else
         format(client, sizeof(client), "PC");
     
-    format(strhead, sizeof(strhead), "%s|[%d]", pDataEngkq[playerid][pName], playerid);
-    format(str, sizeof(str), "{ffffff}Client\t:\t%s\nID_Database\t:\t%d\nInterior\t:\t%d\nVirtual World\t:\t%d\nSkin\t:\t%d\nMoney\t:\t%d\nLevel\t:\t%d", 
-    client, pDataEngkq[playerid][pID], 
-    pDataEngkq[playerid][pInterior], pDataEngkq[playerid][pVirtual_World], 
-    pDataEngkq[playerid][pSkin], pDataEngkq[playerid][pMoney],
-    pDataEngkq[playerid][pLevel]);
+    format(strhead, sizeof(strhead), "{FFFF00}Stats: %s (%d)", pDataEngkq[playerid][pName], playerid);
+    
+    format(str, sizeof(str), "{00FFFF}Kategori\t{00FFFF}Informasi\n");
+    
+    format(str, sizeof(str), "%s{FFFFFF}Client\t: {FFFF00}%s\n", str, client);
+    format(str, sizeof(str), "%s{FFFFFF}ID Database\t: {FFFF00}%d\n", str, pDataEngkq[playerid][pID]);
+    format(str, sizeof(str), "%s{FFFFFF}Interior\t: {FFFF00}%d\n", str, pDataEngkq[playerid][pInterior]);
+    format(str, sizeof(str), "%s{FFFFFF}Virtual World\t: {FFFF00}%d\n", str, pDataEngkq[playerid][pVirtual_World]);
+    format(str, sizeof(str), "%s{FFFFFF}Skin ID\t: {FFFF00}%d\n", str, pDataEngkq[playerid][pSkin]);
+    format(str, sizeof(str), "%s{FFFFFF}Uang\t: {00FF00}$%d\n", str, pDataEngkq[playerid][pMoney]);
+    format(str, sizeof(str), "%s{FFFFFF}Level\t: {FFFF00}%d", str, pDataEngkq[playerid][pLevel]);
 
-    return Dialog_Show(playerid, DialogUnused, DIALOG_STYLE_MSGBOX, strhead, str, "Oke", "");
+    return Dialog_Show(playerid, DialogUnused, DIALOG_STYLE_TABLIST_HEADERS, strhead, str, "Tutup", "");
 }
 
 //--------[ Fungsi - Days, Months, Origin & Validasi Name IC ]--------//
