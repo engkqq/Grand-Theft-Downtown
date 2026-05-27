@@ -1,63 +1,48 @@
-# GTA DownTown
+<div align="center">
+# Grand Theft Downtown Roleplay
 
-Server gamemode GTA berbasis open.mp dengan gameplay dan fitur-fitur menarik.
+Grand Theft Downtown adalah proyek *gamemode* berbasis **open.mp** (Open Multiplayer) yang dikembangkan secara terbuka (**Open Source**). Proyek ini berfokus pada stabilitas performa, struktur kode yang rapi, dan fitur yang interaktif untuk memberikan pengalaman bermain *roleplay* yang seru.
 
-## Tentang Project
+</div>
 
-GTA DownTown adalah sebuah gamemode server GTA San Andreas yang dikembangkan menggunakan platform open.mp. Project ini dirancang untuk memberikan pengalaman bermain yang menyenangkan dengan sistem gameplay yang komprehensif.
+---
 
-## Teknologi
+## Fitur Utama (Features)
+* **Modern Framework:** Menggunakan teknologi open.mp terbaru untuk performa server yang lebih stabil.
+* **Modular Code:** Struktur script yang rapi dan terbagi secara modular di dalam folder `gamemodes/`.
+* **Database Integrated:** Sistem penyimpanan data yang aman dan dinamis.
+* **Discord Integration:** Mendukung otomatisasi sistem UCP dan manajemen server via Discord Bot.
 
-- **Platform**: open.mp
-- **Bahasa Utama**: Pawn (98.4%)
-- **Bahasa Pendukung**: C++ (1.6%)
+---
 
-## Persyaratan Sistem
+## Persyaratan & Struktur Folder
+Proyek ini dikembangkan menggunakan compiler **Qawno**. Pastikan folder compiler Anda sudah dikonfigurasi dengan benar.
 
-Untuk menjalankan server ini, Anda memerlukan:
+### Struktur Proyek:
+* `components/` - Plugin dan komponen penting server open.mp.
+* `gamemodes/` - Tempat script utama server (Data, Variabel, Fungsi, Dialog).
+* `include/` - Kumpulan library (*includes*) pendukung compiler Pawn.
+* `database/` - File `.sql` untuk struktur database server.
 
-- open.mp server files
-- Pemahaman dasar tentang scripting Pawn
-- Text editor atau IDE (Visual Studio Code, Sublime Text, dll)
+---
 
-## Instalasi
+## Cara Berkontribusi (Contributing)
+Proyek ini bersifat terbuka untuk siapa saja yang ingin ikut mengembangkan atau memperbaiki bug.
 
-1. Clone repository ini
-   ```bash
-   git clone https://github.com/engkqq/GTA-DownTown.git
-   ```
+1. **Fork** repositori ini ke akun GitHub Anda.
+2. Lakukan perubahan atau perbaikan langsung pada script.
+3. **Commit** dan **Push** perubahan tersebut ke repositori Anda.
+4. Buat **Pull Request** ke repositori utama ini.
 
-2. Ikuti dokumentasi open.mp untuk setup server
+> 🐛 **Menemukan Bug?**  
+> Jika kalian menemukan *bug*, *glitch*, atau error pada script saat bermain, silakan laporkan langsung melalui tab **Issues** di repositori ini atau hubungi tim developer.
 
-3. Letakkan script gamemode ke folder yang sesuai
+---
 
-4. Konfigurasi server.cfg sesuai kebutuhan
+## Komunitas & Kontak
+Bergabunglah dengan komunitas resmi kami untuk mendapatkan informasi terbaru, diskusi pengembangan, dan bantuan teknis:
 
-5. Jalankan server
+* **Discord Server:** [Join Downtown Roleplay](https://discord.gg/YDe8fr5pQX)
 
-## Fitur Utama
-
-- Sistem gameplay yang stabil
-- Command dan command handler
-- Sistem database (jika ada)
-- Kustomisasi map dan object
-
-## Struktur Project
-
-```
-gamemodes/          - File gamemode utama
-filterscripts/      - Filter scripts tambahan
-include/            - File include/library
-```
-
-## Berkontribusi
-
-Kontribusi sangat diterima. Silakan buat pull request dengan penjelasan yang jelas tentang perubahan yang Anda lakukan.
-
-## Lisensi
-
-Project ini tersedia di bawah lisensi yang ditentukan. Lihat file LICENSE untuk detail lebih lanjut.
-
-## Support
-
-Untuk pertanyaan atau masalah, silakan buat issue di repository ini.
+---
+Developed with ❤️ by **Grand Theft Downtown Team**.
