@@ -11,7 +11,7 @@ stock AccountCheck(playerid)
     return 1;
 }
 
-Fungsi::OnWhitelistChecked(playerid, race_check)
+Fungsi:OnWhitelistChecked(playerid, race_check)
 {
 	if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
 
@@ -39,7 +39,7 @@ Fungsi::OnWhitelistChecked(playerid, race_check)
 	return 1;
 }
 
-Fungsi::OnBanChecked(playerid, race_check)
+Fungsi:OnBanChecked(playerid, race_check)
 {
 	if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
 
@@ -70,7 +70,7 @@ Fungsi::OnBanChecked(playerid, race_check)
 	return 1;
 }
 
-Fungsi::OnUCPChecked(playerid, race_check)
+Fungsi:OnUCPChecked(playerid, race_check)
 {
 	if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
 
@@ -133,7 +133,7 @@ Fungsi::OnUCPChecked(playerid, race_check)
 	return 1;
 }
 
-Fungsi::OnPasswordHashed(playerid, hash_id)
+Fungsi:OnPasswordHashed(playerid, hash_id)
 {
 	bcrypt_get_hash(pDataEngkq[playerid][pPassword], BCRYPT_HASH_LENGTH);
     pDataEngkq[playerid][pActivation] = 1;
@@ -151,7 +151,7 @@ Fungsi::OnPasswordHashed(playerid, hash_id)
 }
 
 
-Fungsi::OnPasswordVerify(playerid, bool:success)
+Fungsi:OnPasswordVerify(playerid, bool:success)
 {
     new str[285];
     if(success)
@@ -200,7 +200,7 @@ stock CheckUserCharacter(playerid)
     return 1;
 }
 
-Fungsi::OnCharacterLoaded(playerid, race_check)
+Fungsi:OnCharacterLoaded(playerid, race_check)
 {
     if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
 
@@ -241,7 +241,7 @@ stock ShowCharacterList(playerid)
     return 1;
 }
 
-Fungsi::OnUsernameChecked(playerid, const name[], race_check)
+Fungsi:OnUsernameChecked(playerid, const name[], race_check)
 {
     if(race_check != g_MysqlRaceCheck[playerid])    
         return KickEx(playerid);
@@ -265,7 +265,7 @@ stock CreateCharacterAccount(playerid)
     return 1;
 }
 
-Fungsi::OnInsertCharacter(playerid)
+Fungsi:OnInsertCharacter(playerid)
 {
     pDataEngkq[playerid][pID] = cache_insert_id();
 

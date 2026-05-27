@@ -16,10 +16,12 @@ SetPlayerPosition(playerid, Float:X, Float:Y, Float:Z, Float:a, inter = 0)
 }
 
 //-------[ DelayFreeze & DelayUnfreeze ]------//
-Fungsi: DelayUnfreeze(playerid)
+public DelayUnfreeze(playerid)
 {
-    TogglePlayerControllable(playerid, 1);
+    TogglePlayerControllable(playerid, true);
     PlayerTextDrawHide(playerid, LoadingTD[playerid][0]);
+    ShowPlayerInfoAction(playerid, "~g~Berhasil Masuk! ~w~Kamu sekarang bisa bergerak.", 3000);
+    return 1;
 }
 ColouredText(text[])
 {
