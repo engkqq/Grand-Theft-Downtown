@@ -70,7 +70,7 @@ Doors_Updatelabel(id)
 	}
 }
 
-EngkqF: OnDoorsCreated(playerid, id)
+Fungsi: OnDoorsCreated(playerid, id)
 {
 	Doors_Save(id);
 	Doors_Updatelabel(id);
@@ -78,7 +78,7 @@ EngkqF: OnDoorsCreated(playerid, id)
 	return 1;
 }
 
-EngkqF: LoadDoors()
+Fungsi: LoadDoors()
 {
     new rows = cache_num_rows();
  	if(rows)

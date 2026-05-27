@@ -16,7 +16,7 @@ SetPlayerPosition(playerid, Float:X, Float:Y, Float:Z, Float:a, inter = 0)
 }
 
 //-------[ DelayFreeze & DelayUnfreeze ]------//
-EngkqF: DelayUnfreeze(playerid)
+Fungsi: DelayUnfreeze(playerid)
 {
     TogglePlayerControllable(playerid, 1);
     PlayerTextDrawHide(playerid, LoadingTD[playerid][0]);
