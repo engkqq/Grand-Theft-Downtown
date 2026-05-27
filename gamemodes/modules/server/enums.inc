@@ -29,6 +29,11 @@ enum E_PLAYER_DATA{
 	pWeight,
 	pHeight,
 	pOrigin[32],
+
+	pInDoor,
+	pInHouse,
+	pInBiz,
+	pInjured,
 	
 	// temp variable
 	bool:IsEngkqLogin,
