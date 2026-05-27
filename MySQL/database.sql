@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `bans` (
   `username` varchar(24) NOT NULL,
   `ucp` varchar(24) NOT NULL,
   `admin` varchar(24) NOT NULL,
+  `adminname` varchar(32) NOT NULL,
   `reason` varchar(128) NOT NULL,
   `ban_date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
