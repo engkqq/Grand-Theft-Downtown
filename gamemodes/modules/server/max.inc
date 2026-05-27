@@ -3,3 +3,5 @@
 
 #undef MAX_VEHICLES
 #define MAX_VEHICLES 100
+
+#define	MAX_DOOR	500

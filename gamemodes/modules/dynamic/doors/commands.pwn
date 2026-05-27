@@ -1,11 +1,12 @@
 CMD:createdoor(playerid, params[])
 {
-    CheckAdmin(playerid, ADMIN_STAFF);
-	
+    if(pDataEngkq[playerid][pAdmin] < 3)
+        return PermissionError(playerid);
+
 	new did = Iter_Free(Doors), mstr[128], engkqquery[248];
-	if(did == -1) return SendErrorMessage(playerid, "You cant create more door!");
+	if(did == -1) return Error(playerid, "You cant create more door!");
 	new name[128];
-	if(sscanf(params, "s[128]", name)) return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /createdoor [name]");
+	if(sscanf(params, "s[128]", name)) return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /createdoor [name]");
 	format(dData[did][dName], 128, name);
 	GetPlayerPos(playerid, dData[did][dExtposX], dData[did][dExtposY], dData[did][dExtposZ]);
 	GetPlayerFacingAngle(playerid, dData[did][dExtposA]);
@@ -35,19 +36,20 @@ CMD:createdoor(playerid, params[])
     Doors_Updatelabel(did);
 	Iter_Add(Doors, did);
 
-	mysql_format(handle, engkqquery, sizeof(engkqquery), "INSERT INTO doors SET ID=%d, extvw=%d, extint=%d, extposx=%f, extposy=%f, extposz=%f, extposa=%f, name='%s'", did, dData[did][dExtvw], dData[did][dExtint], dData[did][dExtposX], dData[did][dExtposY], dData[did][dExtposZ], dData[did][dExtposA], name);
-	mysql_tquery(handle, engkqquery, "OnDoorsCreated", "ii", playerid, did);
+	mysql_format(g_SQL, engkqquery, sizeof(engkqquery), "INSERT INTO doors SET ID=%d, extvw=%d, extint=%d, extposx=%f, extposy=%f, extposz=%f, extposa=%f, name='%s'", did, dData[did][dExtvw], dData[did][dExtint], dData[did][dExtposX], dData[did][dExtposY], dData[did][dExtposZ], dData[did][dExtposA], name);
+	mysql_tquery(g_SQL, engkqquery, "OnDoorsCreated", "ii", playerid, did);
 	return 1;
 }
 
 CMD:gotodoor(playerid, params[])
 {
 	new did;
-	CheckAdmin(playerid, ADMIN_HELPER);
+	if(pDataEngkq[playerid][pAdmin] < 3)
+        return PermissionError(playerid);
 		
 	if(sscanf(params, "d", did))
-		return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /gotodoor [id]");
-	if(!Iter_Contains(Doors, did)) return SendErrorMessage(playerid, "The doors you specified ID of doesn't exist.");
+		return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /gotodoor [id]");
+	if(!Iter_Contains(Doors, did)) return Error(playerid, "The doors you specified ID of doesn't exist.");
 	SetPlayerPosition(playerid, dData[did][dExtposX], dData[did][dExtposY], dData[did][dExtposZ], dData[did][dExtposA]);
     SetPlayerInterior(playerid, dData[did][dExtint]);
     SetPlayerVirtualWorld(playerid, dData[did][dExtvw]);
@@ -65,17 +67,18 @@ CMD:editdoor(playerid, params[])
         type[24],
         string[128];
 
-    CheckAdmin(playerid, ADMIN_STAFF); 
+    if(pDataEngkq[playerid][pAdmin] < 3)
+        return PermissionError(playerid);
 
     if(sscanf(params, "ds[24]S()[128]", did, type, string))
     {
-        SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [name]");
+        SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [name]");
         SendClientMessage(playerid, COLOR_YELLOW, "[NAMES]:{FFFFFF} location, interior, password, name, locked, admin, vip, faction, family, custom, virtual, iconmap");
         return 1;
     }
     if((did < 0 || did >= MAX_DOOR))
-        return SendErrorMessage(playerid, "You have specified an invalid entrance ID.");
-	if(!Iter_Contains(Doors, did)) return SendErrorMessage(playerid, "The doors you specified ID of doesn't exist.");
+        return Error(playerid, "You have specified an invalid entrance ID.");
+	if(!Iter_Contains(Doors, did)) return Error(playerid, "The doors you specified ID of doesn't exist.");
 
     if(!strcmp(type, "location", true))
     {
@@ -117,10 +120,10 @@ CMD:editdoor(playerid, params[])
         new status;
 
         if(sscanf(string, "d", status))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [custom] [0/1]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [custom] [0/1]");
 
         if(status < 0 || status > 1)
-            return SendErrorMessage(playerid, "You must specify at least 0 or 1.");
+            return Error(playerid, "You must specify at least 0 or 1.");
 
         dData[did][dCustom] = status;
         Doors_Save(did);
@@ -138,7 +141,7 @@ CMD:editdoor(playerid, params[])
         new worldid;
 
         if(sscanf(string, "d", worldid))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [virtual] [interior world]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [virtual] [interior world]");
 
         dData[did][dExtvw] = worldid;
 
@@ -151,7 +154,7 @@ CMD:editdoor(playerid, params[])
         new password[32];
 
         if(sscanf(string, "s[32]", password))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [password] [entrance pass] (use 'none' to disable)");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [password] [entrance pass] (use 'none' to disable)");
 
         if(!strcmp(password, "none", true)) {
             format(dData[did][dPass], 32, "");
@@ -168,10 +171,10 @@ CMD:editdoor(playerid, params[])
         new locked;
 
         if(sscanf(string, "d", locked))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [locked] [locked 0/1]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [locked] [locked 0/1]");
 
         if(locked < 0 || locked > 1)
-            return SendErrorMessage(playerid, "Invalid value. Use 0 for unlocked and 1 for locked.");
+            return Error(playerid, "Invalid value. Use 0 for unlocked and 1 for locked.");
 
         dData[did][dLocked] = locked;
         Doors_Save(did);
@@ -188,7 +191,7 @@ CMD:editdoor(playerid, params[])
         new name[128];
 
         if(sscanf(string, "s[128]", name))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [name] [new name]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [name] [new name]");
 
         format(dData[did][dName], 128, ColouredText(name));
 
@@ -202,10 +205,10 @@ CMD:editdoor(playerid, params[])
         new level;
 
         if(sscanf(string, "d", level))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [admin] [level]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [admin] [level]");
 
         if(level < 0 || level > 5)
-            return SendErrorMessage(playerid, "Invalid value. Use 0 - 5 for level.");
+            return Error(playerid, "Invalid value. Use 0 - 5 for level.");
 
         dData[did][dAdmin] = level;
         Doors_Save(did);
@@ -218,10 +221,10 @@ CMD:editdoor(playerid, params[])
         new level;
 
         if(sscanf(string, "d", level))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [VIP] [level]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [VIP] [level]");
 
         if(level < 0 || level > 3)
-            return SendErrorMessage(playerid, "Invalid value. Use 0 - 3 for level.");
+            return Error(playerid, "Invalid value. Use 0 - 3 for level.");
 
         dData[did][dVip] = level;
         Doors_Save(did);
@@ -234,10 +237,10 @@ CMD:editdoor(playerid, params[])
         new fid;
 
         if(sscanf(string, "d", fid))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [faction] [faction id]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [faction] [faction id]");
 
         if(fid < 0 || fid > 4)
-            return SendErrorMessage(playerid, "Invalid value. Use 0 - 4 for type.");
+            return Error(playerid, "Invalid value. Use 0 - 4 for type.");
 
         dData[did][dFaction] = fid;
         Doors_Save(did);
@@ -250,10 +253,10 @@ CMD:editdoor(playerid, params[])
         new fid;
 
         if(sscanf(string, "d", fid))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [family] [family id]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [family] [family id]");
 
         if(fid < -1 || fid > 9)
-            return SendErrorMessage(playerid, "Invalid value. Use -1 - 9 for family id.");
+            return Error(playerid, "Invalid value. Use -1 - 9 for family id.");
 
         dData[did][dFamily] = fid;
         Doors_Save(did);
@@ -266,10 +269,10 @@ CMD:editdoor(playerid, params[])
 		new gid;
 
         if(sscanf(string, "d", gid))
-            return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [garage] [0 - 1]");
+            return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [garage] [0 - 1]");
 
         if(gid < 0 || gid > 1)
-            return SendErrorMessage(playerid, "Invalid value! Use 0 to disable, 1 to enable.");
+            return Error(playerid, "Invalid value! Use 0 to disable, 1 to enable.");
 		
 		if(gid == 0)
 		{
@@ -289,11 +292,11 @@ CMD:editdoor(playerid, params[])
 		new iconid;
 	    if(sscanf(string, "i", iconid))
 	    {
-	        return SendClientMessageEx(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [iconmap] [iconid (0-63)]");
+	        return SendClientMessage(playerid, COLOR_WHITE, "[USAGE]: /editdoor [id] [iconmap] [iconid (0-63)]");
 		}
 		if(!(0 <= iconid <= 63))
 		{
-		    return SendErrorMessage(playerid, "Ikon peta tidak valid..");
+		    return Error(playerid, "Ikon peta tidak valid..");
 		}
 
 		dData[did][dMapIcon] = iconid;
@@ -342,8 +345,8 @@ CMD:editdoor(playerid, params[])
 		
 		Iter_Remove(Doors, did);
 		new equery[128];
-		mysql_format(handle, equery, sizeof(equery), "DELETE FROM doors WHERE ID=%d", did);
-		mysql_tquery(handle, equery);
+		mysql_format(g_SQL, equery, sizeof(equery), "DELETE FROM doors WHERE ID=%d", did);
+		mysql_tquery(g_SQL, equery);
         AdminCMD(COLOR_RED, "%s has delete door ID: %d.", pDataEngkq[playerid][pAdminName], did);
 	}
     return 1;

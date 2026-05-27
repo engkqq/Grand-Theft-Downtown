@@ -2,10 +2,11 @@
 
 Doors_Save(id)
 {
-	mysql_format(handle, query, sizeof(query), "UPDATE doors SET name='%s', password='%s', icon='%d', locked='%d', admin='%d', vip='%d', faction='%d', family='%d', garage='%d', custom='%d', extvw='%d', extint='%d', extposx='%f', extposy='%f', extposz='%f', extposa='%f', intvw='%d', intint='%d', intposx='%f', intposy='%f', intposz='%f', intposa='%f', mapicon='%d' WHERE ID='%d'",
+    new query[512];
+	mysql_format(g_SQL, query, sizeof(query), "UPDATE doors SET name='%s', password='%s', icon='%d', locked='%d', admin='%d', vip='%d', faction='%d', family='%d', garage='%d', custom='%d', extvw='%d', extint='%d', extposx='%f', extposy='%f', extposz='%f', extposa='%f', intvw='%d', intint='%d', intposx='%f', intposy='%f', intposz='%f', intposa='%f', mapicon='%d' WHERE ID='%d'",
 	dData[id][dName], dData[id][dPass], dData[id][dIcon], dData[id][dLocked], dData[id][dAdmin], dData[id][dVip], dData[id][dFaction], dData[id][dFamily], dData[id][dGarage], dData[id][dCustom], dData[id][dExtvw], dData[id][dExtint], dData[id][dExtposX], dData[id][dExtposY], dData[id][dExtposZ], dData[id][dExtposA], dData[id][dIntvw], dData[id][dIntint],
 	dData[id][dIntposX], dData[id][dIntposY], dData[id][dIntposZ], dData[id][dIntposA], dData[id][dMapIcon], id);
-	mysql_tquery(handle, query);
+	mysql_tquery(g_SQL, query);
 	return 1;
 }
 
@@ -124,7 +125,7 @@ Fungsi: LoadDoors()
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
-    if(PRESSED( KEY_FIRE ))
+    if(PRESSED(KEY_FIRE))
     {
         if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsPlayerInAnyVehicle(playerid))
         {
@@ -135,33 +136,33 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                     if(dData[did][dGarage] == 1)
                     {
                         if(dData[did][dIntposX] == 0.0 && dData[did][dIntposY] == 0.0 && dData[did][dIntposZ] == 0.0)
-                            return SendErrorMessage(playerid, "Interior entrance masih kosong, atau tidak memiliki interior.");
+                            return Error(playerid, "Interior entrance masih kosong, atau tidak memiliki interior.");
 
                         if(dData[did][dLocked])
-                            return SendErrorMessage(playerid, "This entrance is locked at the moment.");
+                            return Error(playerid, "This entrance is locked at the moment.");
 
                         if(dData[did][dFaction] > 0)
                         {
                             if(dData[did][dFaction] != pDataEngkq[playerid][pFaction])
-                                return SendErrorMessage(playerid, "This door only for faction.");
+                                return Error(playerid, "This door only for faction.");
                         }
                         if(dData[did][dFamily] > 0)
                         {
                             if(dData[did][dFamily] != pDataEngkq[playerid][pFamily])
-                                return SendErrorMessage(playerid, "This door only for family.");
+                                return Error(playerid, "This door only for family.");
                         }
 
                         if(dData[did][dVip] > pDataEngkq[playerid][pVip])
-                            return SendErrorMessage(playerid, "Your VIP level not enough to enter this door.");
+                            return Error(playerid, "Your VIP level not enough to enter this door.");
 
-                        if(dData[did][dAdmin] > pDataEngkq[playerid][pAdminLevel])
-                            return SendErrorMessage(playerid, "Your admin level not enough to enter this door.");
+                        if(dData[did][dAdmin] > pDataEngkq[playerid][pAdmin])
+                            return Error(playerid, "Your admin level not enough to enter this door.");
 
                         if(strlen(dData[did][dPass]))
                         {
                             new params[256];
-                            if(sscanf(params, "s[256]", params)) return SendInfoMessage(playerid, "Usage: /enter [password]");
-                            if(strcmp(params, dData[did][dPass])) return SendErrorMessage(playerid, "Invalid door password.");
+                            if(sscanf(params, "s[256]", params)) return Info(playerid, "Usage: /enter [password]");
+                            if(strcmp(params, dData[did][dPass])) return Error(playerid, "Invalid door password.");
 
                             if(dData[did][dCustom])
                             {
@@ -208,7 +209,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                         if(dData[did][dFaction] > 0)
                         {
                             if(dData[did][dFaction] != pDataEngkq[playerid][pFaction])
-                                return SendErrorMessage(playerid, "This door only for faction.");
+                                return Error(playerid, "This door only for faction.");
                         }
 
                         if(dData[did][dCustom])
@@ -235,33 +236,33 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
             if(IsPlayerInRangeOfPoint(playerid, 2.8, dData[did][dExtposX], dData[did][dExtposY], dData[did][dExtposZ]))
             {
                 if(dData[did][dIntposX] == 0.0 && dData[did][dIntposY] == 0.0 && dData[did][dIntposZ] == 0.0)
-                    return SendErrorMessage(playerid, "Interior entrance masih kosong, atau tidak memiliki interior.");
+                    return Error(playerid, "Interior entrance masih kosong, atau tidak memiliki interior.");
 
                 if(dData[did][dLocked])
-                    return SendErrorMessage(playerid, "This entrance is locked at the moment.");
+                    return Error(playerid, "This entrance is locked at the moment.");
 
                 if(dData[did][dFaction] > 0)
                 {
                     if(dData[did][dFaction] != pDataEngkq[playerid][pFaction])
-                        return SendErrorMessage(playerid, "This door only for faction.");
+                        return Error(playerid, "This door only for faction.");
                 }
                 if(dData[did][dFamily] > 0)
                 {
                     if(dData[did][dFamily] != pDataEngkq[playerid][pFamily])
-                        return SendErrorMessage(playerid, "This door only for family.");
+                        return Error(playerid, "This door only for family.");
                 }
 
                 if(dData[did][dVip] > pDataEngkq[playerid][pVip])
-                    return SendErrorMessage(playerid, "Your VIP level not enough to enter this door.");
+                    return Error(playerid, "Your VIP level not enough to enter this door.");
 
-                if(dData[did][dAdmin] > pDataEngkq[playerid][pAdminLevel])
-                    return SendErrorMessage(playerid, "Your admin level not enough to enter this door.");
+                if(dData[did][dAdmin] > pDataEngkq[playerid][pAdmin])
+                    return Error(playerid, "Your admin level not enough to enter this door.");
 
                 if(strlen(dData[did][dPass]))
                 {
                     new params[256];
-                    if(sscanf(params, "s[256]", params)) return SendInfoMessage(playerid, "Usage: /enter [password]");
-                    if(strcmp(params, dData[did][dPass])) return SendErrorMessage(playerid, "Invalid door password.");
+                    if(sscanf(params, "s[256]", params)) return Info(playerid, "Usage: /enter [password]");
+                    if(strcmp(params, dData[did][dPass])) return Error(playerid, "Invalid door password.");
 
                     if(dData[did][dCustom])
                     {
@@ -305,7 +306,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
                 if(dData[did][dFaction] > 0)
                 {
                     if(dData[did][dFaction] != pDataEngkq[playerid][pFaction])
-                        return SendErrorMessage(playerid, "This door only for faction.");
+                        return Error(playerid, "This door only for faction.");
                 }
 
                 if(dData[did][dCustom])

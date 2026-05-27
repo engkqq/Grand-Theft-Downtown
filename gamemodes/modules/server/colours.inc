@@ -7,6 +7,7 @@
 #define COLOR_ADMIN       0xff0011AA // {ff0011}
 #define COLOR_SERVER      0xCCCCCCFF // Warna abu-abu elegant penuh (Alpha FF = Pekat/Tidak Transparan)
 #define COLOR_RED         0xFF0000FF
+#define COLOR_YELLOW      0xFFFF00FF
 
 //--------[ Color Hex ]--------//
 #define CODE_SERVER         "{CCCCCC}"
