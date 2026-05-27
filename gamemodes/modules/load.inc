@@ -12,3 +12,6 @@
 
 //--------[ Objects ]--------//
 #include "./modules/object/object.inc"
+
+//--------[ Dynamic ]--------//
+#include "./modules/dynamic/header.inc"
