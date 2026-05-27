@@ -31,6 +31,7 @@
 //--------[ Macro ]--------//
 #define Fungsi:%0(%1) forward %0(%1); public %0(%1)
 #define Forex(%0,%1) for(new %0 = 0; %0 < %1; %0++)
+#define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 
 //--------[ SendMessage ]--------//
 #define SendNearbyMessage SendProximityMessage															// Me Action.
@@ -41,10 +42,10 @@
 	SendClientMessage(%1, -1, "{33CCFF}USAGE: {FFFFFF}"%2)
 
 #define Servers(%1,%2) \
-	SendClientMessageEx(%1, -1, "{FFFF00}SERVERS: {FFFFFF}"%2)
+	SendClientMessage(%1, -1, "{FFFF00}SERVERS: {FFFFFF}"%2)
 
 #define AdminCMD(%0,%1) \
-    SendClientMessage(%0, TOMATO, "AdmCmd: {FFFFFF}" %1)
+    SendClientMessage(%0, COLOR_RED, "AdmCmd: {FFFFFF}" %1)
 
 #define Success(%0,%1) \
     SendClientMessage(%0, -1, "{00FF00}SUCCESS: {FFFFFF}%s", %1)										// Pesan Sukses Otomatis Berwarna Hijau, Usage (SendSuccessMessage(playerid, Test);).
