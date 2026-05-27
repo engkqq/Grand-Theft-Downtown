@@ -4,13 +4,13 @@
 CMD:a(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 1)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     if(isnull(params))
         return SendClientMessage(playerid, COLOR_USAGE, "USAGE: {ffffff}/a <pesan>");
 
     new str[144];
-    format(str, sizeof(str), "{FFD700}[STAFF] {ffffff}%s: %s", pDataEngkq[playerid][pName], params);
+    format(str, sizeof(str), "{FFD700}[%s] {ffffff}%s: %s", GetDownTownRank(playerid), pDataEngkq[playerid][pName], params);
     
     foreach(new i : Player)
     {
@@ -26,7 +26,7 @@ CMD:a(playerid, params[])
 CMD:goto(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 1)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId;
     if(sscanf(params, "u", targetId))
@@ -48,7 +48,7 @@ CMD:goto(playerid, params[])
 CMD:gethere(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 1)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId;
     if(sscanf(params, "u", targetId))
@@ -71,7 +71,7 @@ CMD:gethere(playerid, params[])
 CMD:freeze(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 1)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId;
     if(sscanf(params, "u", targetId))
@@ -89,7 +89,7 @@ CMD:freeze(playerid, params[])
 CMD:unfreeze(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 1)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId;
     if(sscanf(params, "u", targetId))
@@ -108,7 +108,7 @@ CMD:unfreeze(playerid, params[])
 CMD:slap(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 2)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId;
     if(sscanf(params, "u", targetId))
@@ -129,7 +129,7 @@ CMD:slap(playerid, params[])
 CMD:revive(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 2)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId;
     if(sscanf(params, "u", targetId))
@@ -149,7 +149,7 @@ CMD:revive(playerid, params[])
 CMD:ban(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 4)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId, reason[128];
     if(sscanf(params, "us[128]", targetId, reason))
@@ -175,7 +175,7 @@ CMD:ban(playerid, params[])
 CMD:setadmin(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId, level;
     if(sscanf(params, "ud", targetId, level))
@@ -202,7 +202,7 @@ CMD:setadmin(playerid, params[])
 CMD:addslot(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId, amount;
     if(sscanf(params, "ud", targetId, amount))
@@ -234,7 +234,7 @@ CMD:addslot(playerid, params[])
 CMD:setlevel(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId, 
         amountLevel;
@@ -256,7 +256,7 @@ CMD:setlevel(playerid, params[])
 CMD:setinterior(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId, 
         interior;
@@ -280,7 +280,7 @@ CMD:setinterior(playerid, params[])
 CMD:setskin(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId,
         skinId;
@@ -307,7 +307,7 @@ CMD:setskin(playerid, params[])
 CMD:setvw(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId,
         vwId;
@@ -331,7 +331,7 @@ CMD:setvw(playerid, params[])
 CMD:addmoney(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId, 
         amountMoney;
@@ -356,7 +356,7 @@ CMD:addmoney(playerid, params[])
 CMD:kick(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId,
         reasonKick[64];
@@ -380,7 +380,7 @@ CMD:kick(playerid, params[])
 CMD:sethp(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId, 
         Float:healthPlayer;
@@ -406,7 +406,7 @@ CMD:sethp(playerid, params[])
 CMD:setarmor(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new targetId,
         Float:amountArmour;
@@ -432,7 +432,7 @@ CMD:setarmor(playerid, params[])
 CMD:gotopos(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
         
     new Float:posX,
         Float:posY,

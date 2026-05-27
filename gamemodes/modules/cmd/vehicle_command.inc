@@ -1,7 +1,7 @@
 CMD:createvehicle(playerid, params[])
 {
     if(pDataEngkq[playerid][pAdmin] < 5)
-        return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kamu tidak memiliki akses untuk perintah ini.");
+        return PermissionError(playerid);
 
     new modelid, color1, color2;
     if(sscanf(params, "iii", modelid, color1, color2))
