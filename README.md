@@ -43,7 +43,7 @@ Proyek ini bersifat terbuka untuk siapa saja yang ingin ikut mengembangkan atau 
 ## Komunitas & Kontak
 Bergabunglah dengan komunitas resmi kami untuk mendapatkan informasi terbaru, diskusi pengembangan, dan bantuan teknis:
 
-* **Discord Server:** [Join Downtown Roleplay](https://discord.gg/YDe8fr5pQX)
+* **Discord Server:** [Join Downtown Roleplay](https://discord.gg/P6tWPm2wJC)
 
 ---
 Developed with ❤️ by **Grand Theft Downtown Team**.
