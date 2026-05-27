@@ -1,0 +1,5 @@
+#undef MAX_PLAYERS
+#define MAX_PLAYERS 50
+
+#undef MAX_VEHICLES
+#define MAX_VEHICLES 100

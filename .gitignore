@@ -1,0 +1,6 @@
+gamemodes/*.xml
+
+.vscode/
+
+log.txt
+gamemodes/main-engkq.amx

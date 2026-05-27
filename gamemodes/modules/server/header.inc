@@ -1,0 +1,8 @@
+#include "modules\server\nameservers.inc"
+#include "modules\server\colours.inc"
+#include "modules\server\define.inc"
+#include "modules\server\enums.inc"
+#include "modules\server\variable.inc"
+#include "modules\server\utils.inc"
+#include "modules\server\loader.inc"
+#include "modules\server\events.inc"
