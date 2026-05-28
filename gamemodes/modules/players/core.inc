@@ -5,10 +5,6 @@ ResetValueVariable(playerid)
     pDataEngkq[playerid][pSkin] = 0;
     pDataEngkq[playerid][pMoney] = 0;
     pDataEngkq[playerid][pLevel] = 0;
-    pDataEngkq[playerid][pPos][0] = 0.0;
-    pDataEngkq[playerid][pPos][1] = 0.0;
-    pDataEngkq[playerid][pPos][2] = 0.0;
-    pDataEngkq[playerid][pPos][3] = 0.0;
     pDataEngkq[playerid][pBirthDay] = 0;
     pDataEngkq[playerid][pBirthMonth] = 0;
     pDataEngkq[playerid][pBirthYear] = 0;
@@ -59,16 +55,10 @@ Fungsi:OnCharacterDataLoaded(playerid)
 
     pDataEngkq[playerid][IsPlayersLogin] = true;
     
-    // Spawn Logic
-    if(pDataEngkq[playerid][pLastExit] == 0 || (gettime() - pDataEngkq[playerid][pLastExit]) > 3600)
-    {
-        Dialog_Show(playerid, DialogSpawnSelect, DIALOG_STYLE_LIST, "{CCCCCC}GTA:DownTown {FFFFFF}- Spawn Selection", "Pelabuhan\nBandara", "Spawn", "Close");
-    }
-    else
-    {
-        SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], pDataEngkq[playerid][pPos][0], pDataEngkq[playerid][pPos][1], pDataEngkq[playerid][pPos][2], pDataEngkq[playerid][pPos][3], WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
-        SpawnPlayer(playerid);
-    }
+    SetSpawnInfo(playerid, NO_TEAM, 
+    pDataEngkq[playerid][pSkin], pDataEngkq[playerid][pPos][0], pDataEngkq[playerid][pPos][1], pDataEngkq[playerid][pPos][2], pDataEngkq[playerid][pPos][3],
+    WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
+    SpawnPlayer(playerid);
     GetPlayerNameEx(playerid);
     
     SetPlayerInterior(playerid, pDataEngkq[playerid][pInterior]);
