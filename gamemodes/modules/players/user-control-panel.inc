@@ -153,8 +153,6 @@ Fungsi:OnPasswordVerify(playerid, bool:success)
     new str[285];
     if(success)
     {
-        pDataEngkq[playerid][pLoginAttempt] = 0;
-        pDataEngkq[playerid][IsPlayersLogin] = true;
         CheckUserCharacter(playerid);
     }
     else
