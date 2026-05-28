@@ -1,6 +1,8 @@
 gamemodes/*.xml
 #scripts/
 
+script.txt
+
 .vscode/
 
 log.txt
