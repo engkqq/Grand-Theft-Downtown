@@ -19,7 +19,7 @@ SetPlayerPosition(playerid, Float:X, Float:Y, Float:Z, Float:a, inter = 0)
 Fungsi:DelayUnfreeze(playerid)
 {
     TogglePlayerControllable(playerid, true);
-    ShowPlayerInfoAction(playerid, "~g~Berhasil Masuk! ~w~Kamu sekarang bisa bergerak.", 3000);
+    ShowPlayerInfoAction(playerid, "~w~ Memuat objek sekitar...", 3000);
     return 1;
 }
 ColouredText(const text[])

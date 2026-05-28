@@ -152,7 +152,7 @@ stock ShowInfo(playerid)
 Fungsi:LoadingObject(playerid)
 {
     TogglePlayerControllable(playerid, false);
-    ShowPlayerInfoAction(playerid, "~y~ Grand Theft Downtown ~w~| Memuat objek sekitar...", 0);
+    ShowPlayerInfoAction(playerid, "~w~ Memuat objek sekitar...", 0);
     SetTimerEx("DelayUnfreeze", 3000, false, "d", playerid);
     return 1;
 }
