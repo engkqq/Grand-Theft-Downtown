@@ -1,4 +1,14 @@
-// Admin Command System (FiveM Style)
+CMD:mypos(playerid, params[])
+{
+    if(pDataEngkq[playerid][pAdmin] < 1)
+        return PermissionError(playerid);
+
+    new Float:x, Float:y, Float:z;
+    GetPlayerPos(playerid, x, y, z);
+    Servers(playerid, "Posisi kamu saat ini adalah X : %.4f Y : %.4f Z : %.4f", x, y, z);
+    printf("Player id %d requested their position : X : %.4f Y : %.4f Z : %.4f", playerid, x, y, z);
+    return 1;
+}
 
 // Staff Chat
 CMD:a(playerid, params[])
