@@ -18,44 +18,9 @@
     * Note :
         - Terimkasih kepada semua yang telah berkontribusi dalam pengembangan gamemode ini. Tanpa kalian, gamemode ini tidak akan pernah terwujud. Kami sangat menghargai setiap bantuan dan dukungan yang telah diberikan.
 
-* List Changelogs - v0.0.1b :
-[+] Added & Improvements
-- Added 'Name Server' feature to allow players to set their own server name.
-- Added 'Login & Register With UCP' fitur untuk memungkinkan pemain masuk dan mendaftar menggunakan User Control Panel (UCP).
-- Added 'Player Data Saving' fitur untuk menyimpan data pemain secara otomatis ke database.
-- Added System 'Vehicle'
-- Added Commands 'Players & Admins'
-- Added 'EngkqF:' digunakan untuk menggantikan 'forward & public' agar lebih mudah dalam penulisan kode.
-
-================================================================================================================
-
-* Status : 6%
-* List Changelogs - v0.0.2b :
-[+] Added & Improvements
-- Added 'engkqSelections' untuk membuat menu interaktif dengan mudah.
-- Added 'Skins Selection' fitur untuk memungkinkan pemain memilih skin karakter mereka.
-- Added 'Remove Player Money' fitur untuk memungkinkan admins mengurangi uang mereka.
-- Added Fungsi 'ShowInfo' untuk menampilkan informasi penting kepada pemain saat mereka masuk ke dalam game.
-- Added 'engkqAction' untuk menampilkan pesan dengan textdraws yang lebih baik.
-
-- Improvements `engkqSelections` meningkatkan performa dan textdraw.
-
-[=] Changed & Fixes
-- Fixes pada 'Database' query untuk menyimpan data pemain dengan benar.
-
-================================================================================================================
-
-* Status : IN PROGRESS % - :downtown:
-* List Changelogs - v0.0.2b :
-[+] Added & Improvements
-- Improvements Dialog 'Whitelist, Register Dan Lain Lain'
-
-[=] Changed & Fixes
-- Fixes 'RemoveBuildingServers' untuk menghapus bangunan dengan benar bagi pemain.
-
-[-] Removed & Deprecated
--
-
+    * Engkq (Lead Developer)
+    * None
+    * None
 */
 #define YSI_NO_VERSION_CHECK        // By Y_Less (Untuk mencegah pemeriksaan versi YSI yang tidak perlu).
 #include <open.mp>                  // By Incognito (Open.MP Plugin).
