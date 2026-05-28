@@ -19,9 +19,18 @@
         - Terimkasih kepada semua yang telah berkontribusi dalam pengembangan gamemode ini. Tanpa kalian, gamemode ini tidak akan pernah terwujud. Kami sangat menghargai setiap bantuan dan dukungan yang telah diberikan.
 
     * Engkq (Lead Developer)
-    * None
+    * Ventra ABP.Rahman (Updaters & Developer)
     * None
 */
+
+//pragma jangan di hapus
+#pragma tabsize 0
+#pragma warning disable 203
+#pragma warning disable 234
+#pragma warning disable 213
+#pragma warning disable 217
+
+#define OPENMP_COMPAT
 #define YSI_NO_VERSION_CHECK        // By Y_Less (Untuk mencegah pemeriksaan versi YSI yang tidak perlu).
 #include <open.mp>                  // By Incognito (Open.MP Plugin).
 
@@ -36,6 +45,7 @@
 #include <easyDialog>               // By Incognito (Dialog Interaktif).   
 #include <engkqSelections>          // By Engkq     (Menu Interaktif).
 #include <engkqAction>              // By Engkq     (Textdraws Pesan).
+#include <Info>                    // By Ventra
 
 //--------[ Loaded All Files ]-----------------
 #include "./modules/load.inc"
