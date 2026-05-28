@@ -128,6 +128,11 @@ hook OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
     return 1;
 }
 
+hook OnPlayerCommandReceived(playerid, cmd[], params[], flags)
+{
+    return 1;
+}
+
 hook OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 {
 	SetPlayerPosFindZ(playerid, Float:fX, Float:fY, Float:fZ);
@@ -135,7 +140,7 @@ hook OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 	return 1;
 }
 
-public OnPlayerSelectEModel(playerid, extraid, index, modelid)
+hook OnPlayerSelectEModel(playerid, extraid, index, modelid)
 {
     if(extraid == 1 || extraid == 2)
     {
