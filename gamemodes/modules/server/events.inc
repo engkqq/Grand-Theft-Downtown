@@ -121,13 +121,11 @@ hook OnPlayerEnterCheckpoint(playerid)
 
 hook OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
 {
-  if (result == -1)
-  {
-    SendClientMessage(playerid, COLOR_SERVER, "SERVER: {ffffff}Command tidak tersedia, /help untuk melihat command yang tersedia");
-    return 0;
-  }
-
-  return 1;
+    if (result == -1)
+    {
+        return Error(playerid, "Commands tidak ditemukan, gunakan {FFFF00}'/help'{FFFFFF}.");
+    }
+    return 1;
 }
 
 hook OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
