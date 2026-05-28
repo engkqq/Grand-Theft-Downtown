@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS `doors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping structure for table engkqopenmp.player
-CREATE TABLE IF NOT EXISTS `player` (
+-- Dumping structure for table engkqopenmp.users
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `username` varchar(24) NOT NULL,
   `ucp` varchar(24) NOT NULL,
