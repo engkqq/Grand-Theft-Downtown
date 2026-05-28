@@ -102,9 +102,8 @@ CreateSetupCharacter(playerid)
 
     SetPlayerInterior(playerid, 0);
     SetPlayerVirtualWorld(playerid, 0);
-    SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], DEFAULT_POS_X, DEFAULT_POS_Y, DEFAULT_POS_Z, DEFAULT_POS_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
     GivePlayerMoneyEx(playerid, 5000);
-    SpawnPlayer(playerid);
+    Dialog_Show(playerid, DialogSpawnSelect, DIALOG_STYLE_LIST, "{CCCCCC}GTA:DownTown {FFFFFF}- Spawn Selection", "Pelabuhan\nBandara", "Spawn", "Close");
     return 1;
 }
 

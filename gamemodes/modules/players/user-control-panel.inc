@@ -72,28 +72,27 @@ Fungsi:OnBanChecked(playerid, race_check)
 
 Fungsi:OnUCPChecked(playerid, race_check)
 {
-	if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
+    if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
 
-	new string[280];
-	if(cache_num_rows() > 0)
-	{
+    new string[280];
+    if(cache_num_rows() > 0)
+    {
         cache_get_value_name_int(0, "activation", pDataEngkq[playerid][pActivation]);
         cache_get_value_name_int(0, "char_slots", pDataEngkq[playerid][pCharSlots]);
         cache_get_value_name_int(0, "admin", pDataEngkq[playerid][pAdmin]);
         cache_get_value_name(0, "adminname", pDataEngkq[playerid][pAdminName]);
-		cache_get_value_name(0, "password", pDataEngkq[playerid][pPassword]);
+        cache_get_value_name(0, "password", pDataEngkq[playerid][pPassword]);
 
-        // Fix for slots: if it's 2 (old default) and not admin 5, force it to 1
         if(pDataEngkq[playerid][pCharSlots] == 2 && pDataEngkq[playerid][pAdmin] < 5)
         {
             pDataEngkq[playerid][pCharSlots] = 1;
             new query[128];
-            mysql_format(g_SQL, query, sizeof(query), "UPDATE ucp SET char_slots = 1 WHERE ucp_name = '%e'", pDataEngkq[playerid][pUCP]);
+            mysql_format(g_SQL, query, sizeof(query), "UPDATE ucp SET char_slots = 3 WHERE ucp_name = '%e'", pDataEngkq[playerid][pUCP]);
             mysql_tquery(g_SQL, query);
         }
         else if(pDataEngkq[playerid][pCharSlots] == 0)
         {
-            pDataEngkq[playerid][pCharSlots] = 1;
+            pDataEngkq[playerid][pCharSlots] = 3;
         }
 
         if(pDataEngkq[playerid][pActivation] == 0)
@@ -117,20 +116,19 @@ Fungsi:OnUCPChecked(playerid, race_check)
             {ffffff}Login ke akun kamu dengan memasukan password dibawah:", pDataEngkq[playerid][pUCP]);
             Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "{CCCCCC}GTA:DownTown {FFFFFF}- Login", string, "Login", "Close");
         }
-
-	}
-	else
-	{
-		format(string, sizeof(string),
+    }
+    else
+    {
+        format(string, sizeof(string),
         "{CCCCCC}----------------------------------------\n\
         {ffffff}Username: {04d400}%s\n\
         {ffffff}Status: {04d400}Whitelisted\n\
         {CCCCCC}----------------------------------------\n\
         {ffffff}Akun UCP kamu sudah masuk whitelist namun belum terdaftar.\n\
         {ffffff}Silahkan masukan kode verifikasi yang diberikan oleh Discord bot.", pDataEngkq[playerid][pUCP]);
-		Dialog_Show(playerid, DialogVerifyCode, DIALOG_STYLE_INPUT, "{CCCCCC}GTA:DownTown {FFFFFF}- Registrasi UCP", string, "Input", "Close");
-	}
-	return 1;
+        Dialog_Show(playerid, DialogVerifyCode, DIALOG_STYLE_INPUT, "{CCCCCC}GTA:DownTown {FFFFFF}- Registrasi UCP", string, "Input", "Close");
+    }
+    return 1;
 }
 
 Fungsi:OnPasswordHashed(playerid, hash_id)
@@ -140,7 +138,7 @@ Fungsi:OnPasswordHashed(playerid, hash_id)
     pDataEngkq[playerid][pCharSlots] = 1; // Force 1 for new accounts
     
     new query[512];
-    mysql_format(g_SQL, query, sizeof(query), "INSERT INTO ucp (ucp_name, password, activation, char_slots) VALUES ('%e', '%e', 1, 1) ON DUPLICATE KEY UPDATE password = '%e', activation = 1", pDataEngkq[playerid][pUCP], pDataEngkq[playerid][pPassword], pDataEngkq[playerid][pPassword]);
+    mysql_format(g_SQL, query, sizeof(query), "INSERT INTO ucp (ucp_name, password, activation, char_slots, admin, adminname) VALUES ('%e', '%e', 1, 3, 0, 'None') ON DUPLICATE KEY UPDATE password = '%e', activation = 1", pDataEngkq[playerid][pUCP], pDataEngkq[playerid][pPassword], pDataEngkq[playerid][pPassword]);
     mysql_tquery(g_SQL, query);
 
     mysql_format(g_SQL, query, sizeof(query), "UPDATE whitelist SET active = 1 WHERE ucp_name = '%e'", pDataEngkq[playerid][pUCP]);
@@ -150,13 +148,13 @@ Fungsi:OnPasswordHashed(playerid, hash_id)
 	return 1;
 }
 
-
 Fungsi:OnPasswordVerify(playerid, bool:success)
 {
     new str[285];
     if(success)
     {
-        cache_get_value_name(0, "adminname", pDataEngkq[playerid][pAdminName]);
+        pDataEngkq[playerid][pLoginAttempt] = 0;
+        pDataEngkq[playerid][IsPlayersLogin] = true;
         CheckUserCharacter(playerid);
     }
     else
@@ -257,7 +255,7 @@ Fungsi:OnUsernameChecked(playerid, const name[], race_check)
 stock CreateCharacterAccount(playerid)
 {
     new query[512];
-    mysql_format(g_SQL, query, sizeof(query), "INSERT INTO player (username, ucp, skin, gender, birth_day, birth_month, birth_year, weight, height, origin, pos_x, pos_y, pos_z, pos_a, interior, virtual_world) VALUES ('%e', '%e', %d, %d, %d, %d, %d, %d, %d, '%e', %f, %f, %f, %f, %d, %d)", 
+    mysql_format(g_SQL, query, sizeof(query), "INSERT INTO users (username, ucp, skin, gender, birth_day, birth_month, birth_year, weight, height, origin, pos_x, pos_y, pos_z, pos_a, interior, virtual_world) VALUES ('%e', '%e', %d, %d, %d, %d, %d, %d, %d, '%e', %f, %f, %f, %f, %d, %d)", 
         pDataEngkq[playerid][pName], pDataEngkq[playerid][pUCP], pDataEngkq[playerid][pSkin], pDataEngkq[playerid][pGender], pDataEngkq[playerid][pBirthDay], pDataEngkq[playerid][pBirthMonth], pDataEngkq[playerid][pBirthYear],
         pDataEngkq[playerid][pWeight], pDataEngkq[playerid][pHeight], pDataEngkq[playerid][pOrigin],
         DEFAULT_POS_X, DEFAULT_POS_Y, DEFAULT_POS_Z, DEFAULT_POS_A, 0, 0);

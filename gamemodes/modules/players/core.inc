@@ -107,7 +107,7 @@ stock UpdateDataPlayer(playerid)
     printf(">> Character Data Updated for PlayerID: %d, Name: %s", playerid, pDataEngkq[playerid][pName]);
 
     new ucpQuery[150];
-    mysql_format(g_SQL, ucpQuery, sizeof(ucpQuery), "UPDATE ucp SET admin_name = '%e' WHERE ucp_name = '%e' LIMIT 1",
+    mysql_format(g_SQL, ucpQuery, sizeof(ucpQuery), "UPDATE ucp SET adminname = '%e' WHERE ucp_name = '%e' LIMIT 1",
         pDataEngkq[playerid][pAdminName], pDataEngkq[playerid][pUCP]
     );
     mysql_tquery(g_SQL, ucpQuery);

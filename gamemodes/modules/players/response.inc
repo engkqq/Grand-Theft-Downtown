@@ -133,6 +133,7 @@ Dialog:DialogGender(playerid, response, listitem, inputtext[])
             pDataEngkq[playerid][pGender] = 1;
             ShowPlayereSelectionEngkq(playerid, "Select Skins", 2, "female_spawnskin.txt");
         }
+        
     }
     return 1;
 }
@@ -145,6 +146,7 @@ Dialog:DialogSpawnSelect(playerid, response, listitem, inputtext[])
         
         SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], pDataEngkq[playerid][pPos][0], pDataEngkq[playerid][pPos][1], pDataEngkq[playerid][pPos][2], pDataEngkq[playerid][pPos][3], WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
         SpawnPlayer(playerid);
+        ShowInfo(playerid);
         return 1;
     }
 
@@ -154,6 +156,7 @@ Dialog:DialogSpawnSelect(playerid, response, listitem, inputtext[])
         
         SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], SPAWN_PELABUHAN_X, SPAWN_PELABUHAN_Y, SPAWN_PELABUHAN_Z, SPAWN_PELABUHAN_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
         SpawnPlayer(playerid);
+        ShowInfo(playerid);
     }
     else if(listitem == 1) // Airport
     {
@@ -161,6 +164,7 @@ Dialog:DialogSpawnSelect(playerid, response, listitem, inputtext[])
         
         SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], SPAWN_BANDARA_X, SPAWN_BANDARA_Y, SPAWN_BANDARA_Z, SPAWN_BANDARA_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
         SpawnPlayer(playerid);
+        ShowInfo(playerid);
     }
     return 1;
 }
