@@ -121,6 +121,134 @@ hook OnPlayerEnterCheckpoint(playerid)
 
 hook OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
 {
+#include <YSI_Coding\y_hooks>
+
+main()
+{
+	SendRconCommand("game.mode %s(%s)", GAMEMODES, REVISION);
+	SendRconCommand("gamemode.language %s", LANGUAGE);
+}
+
+// Disaat gamemode start
+hook OnGameModeInit()
+{
+	ConnectMysql(HOST, USERNAME, PASSWORD, DATABASE);
+	
+	//--------[ Create Textdraw ]--------//
+	CreateGlobalTextdraw();
+
+	//--------[ Others ]--------//
+	DisableInteriorEnterExits();
+	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
+	CreateObjectsServers();
+	Iter_Init(PlayerVehicle);
+
+	LoaderServers();
+	return 1;
+}
+
+hook OnGameModeExit()
+{
+	mysql_close(g_SQL);
+	return 1;
+}
+
+hook OnPlayerConnect(playerid)
+{
+	ResetValueVariable(playerid);
+	AccountCheck(playerid);
+	InitNoticeTD(playerid);
+	InitErrorTD(playerid);
+	CreateCompas(playerid);
+	
+	// textdraw server
+	TextDrawShowForPlayer(playerid, EngkqNameServers[0]);
+	TextDrawShowForPlayer(playerid, EngkqNameServers[1]);
+	TextDrawShowForPlayer(playerid, EngkqNameServers[2]);
+
+	if (IsPlayerUsingOfficialClient(playerid))
+        pDataEngkq[playerid][isOfficialClient] = true;
+
+	new ip[16];
+	GetPlayerIp(playerid, ip, sizeof(ip));
+	SendClientMessage(playerid, COLOR_WHITE, "IP : %s", ip);
+
+	RemoveBuildingServers(playerid);
+	return 1;
+}
+
+hook OnPlayerDisconnect(playerid, reason)
+{
+	g_MysqlRaceCheck[playerid]++;
+	
+	UpdateDataPlayer(playerid);
+	SetPlayerName(playerid, pDataEngkq[playerid][pUCP]);
+
+	pDataEngkq[playerid][IsPlayersLogin] = false;
+	return 1;
+}
+
+hook OnPlayerRequestClass(playerid, classid)
+{
+	return 1;
+}
+
+hook OnPlayerSpawn(playerid)
+{
+  Notice(playerid, "NOTICE", "Success Spawn"); //contoh penggunaan nya include notice
+  ShowCompas(playerid);
+	return 1;
+}
+
+hook OnPlayerDeath(playerid, killerid, WEAPON:reason)
+{
+	return 1;
+}
+
+hook OnPlayerExitVehicle(playerid, vehicleid)
+{
+	return 1;
+}
+
+hook OnPlayerRequestSpawn(playerid)
+{
+	if(!pDataEngkq[playerid][IsPlayersLogin])
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "ERROR: Kamu tidak diizinkan menekan tombol spawn!");
+		return 0;
+	}
+	return 1;
+}
+
+hook OnPlayerText(playerid, text[])
+{
+	new msg[144];
+	format(msg, sizeof(msg), "%s [%d] : %s", pDataEngkq[playerid][pName], playerid, text);
+
+	new Float:posX,
+		Float:posY,
+		Float:posZ;
+
+	GetPlayerPos(playerid, posX, posY, posZ);
+
+	foreach(new i : Player)
+	{
+		if(IsPlayerInRangeOfPoint(i, 20.0, posX, posY, posZ))
+		{
+			SendClientMessage(i, COLOR_WHITE, msg);
+		}
+	}
+
+	return 0;
+}
+
+hook OnPlayerEnterCheckpoint(playerid)
+{
+	return 1;
+}
+
+hook OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
+{
     if (result == -1)
     {
         return Error(playerid, "Commands tidak ditemukan, gunakan {FFFF00}'/help'{FFFFFF}.");
