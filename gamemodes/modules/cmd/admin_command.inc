@@ -3,10 +3,11 @@ CMD:mypos(playerid, params[])
     if(pDataEngkq[playerid][pAdmin] < 1)
         return PermissionError(playerid);
 
-    new Float:x, Float:y, Float:z;
+    new Float:x, Float:y, Float:z; Float:angle;
     GetPlayerPos(playerid, x, y, z);
-    Servers(playerid, "Posisi kamu saat ini adalah X : %.4f Y : %.4f Z : %.4f", x, y, z);
-    printf("Player id %d requested their position : X : %.4f Y : %.4f Z : %.4f", playerid, x, y, z);
+    GetPlayerFacingAngle(playerid, angle);
+    Servers(playerid, "Posisi kamu saat ini adalah X : %.4f Y : %.4f Z : %.4f A : %.4f", x, y, z, angle);
+    printf("Player id %d requested their position : X : %.4f Y : %.4f Z : %.4f A : %.4f", playerid, x, y, z, angle);
     return 1;
 }
 
