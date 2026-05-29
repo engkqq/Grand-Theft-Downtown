@@ -34,6 +34,9 @@ hook OnPlayerConnect(playerid)
 {
 	ResetValueVariable(playerid);
 	AccountCheck(playerid);
+	//InitNoticeTD(playerid);
+	//InitErrorTD(playerid);
+	CreateCompas(playerid);
 	
 	// textdraw server
 	TextDrawShowForPlayer(playerid, EngkqNameServers[0]);
@@ -69,6 +72,8 @@ hook OnPlayerRequestClass(playerid, classid)
 
 hook OnPlayerSpawn(playerid)
 {
+  	//Notice(playerid, "NOTICE", "Success Spawn"); //contoh penggunaan nya include notice
+  	ShowCompas(playerid);
 	return 1;
 }
 
