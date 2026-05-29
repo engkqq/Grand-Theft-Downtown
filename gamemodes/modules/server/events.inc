@@ -126,7 +126,7 @@ hook OnPlayerEnterCheckpoint(playerid)
 
 hook OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
 {
-    if (result == -1)
+    if (result == 0)
     {
         return Error(playerid, "Commands tidak ditemukan, gunakan {FFFF00}'/help'{FFFFFF}.");
     }

@@ -38,8 +38,8 @@
 #include <easyDialog>               // By Incognito (Dialog Interaktif).   
 #include <engkqSelections>          // By Engkq     (Menu Interaktif).
 #include <engkqAction>              // By Engkq     (Textdraws Pesan).
-//#include <Info>                    // By Ventra
-#include <compas>                  // By Ventra
+//#include <Info>                   // By Ventra
+#include <compas>                   // By Ventra
 
 //--------[ Loaded All Files ]-----------------
 #include "./modules/load.inc"
