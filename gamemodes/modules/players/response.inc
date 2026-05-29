@@ -150,21 +150,24 @@ Dialog:DialogSpawnSelect(playerid, response, listitem, inputtext[])
         return 1;
     }
 
-    if(listitem == 0) // Pelabuhan
+    switch(listitem)
     {
-        pDataEngkq[playerid][pLastExit] = gettime();
-        
-        SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], SPAWN_PELABUHAN_X, SPAWN_PELABUHAN_Y, SPAWN_PELABUHAN_Z, SPAWN_PELABUHAN_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
-        SpawnPlayer(playerid);
-        ShowInfo(playerid);
-    }
-    else if(listitem == 1) // Airport
-    {
-        pDataEngkq[playerid][pLastExit] = gettime();
-        
-        SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], SPAWN_BANDARA_X, SPAWN_BANDARA_Y, SPAWN_BANDARA_Z, SPAWN_BANDARA_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
-        SpawnPlayer(playerid);
-        ShowInfo(playerid);
+        case 0: // Pelabuhan
+        {
+            pDataEngkq[playerid][pLastExit] = gettime();
+            
+            SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], SPAWN_PELABUHAN_X, SPAWN_PELABUHAN_Y, SPAWN_PELABUHAN_Z, SPAWN_PELABUHAN_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
+            SpawnPlayer(playerid);
+            ShowInfo(playerid);
+        }
+        case 1: // Airport
+        {
+            pDataEngkq[playerid][pLastExit] = gettime();
+            
+            SetSpawnInfo(playerid, NO_TEAM, pDataEngkq[playerid][pSkin], SPAWN_BANDARA_X, SPAWN_BANDARA_Y, SPAWN_BANDARA_Z, SPAWN_BANDARA_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
+            SpawnPlayer(playerid);
+            ShowInfo(playerid);
+        }
     }
     return 1;
 }

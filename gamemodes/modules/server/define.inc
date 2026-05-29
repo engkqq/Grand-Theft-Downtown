@@ -16,17 +16,17 @@
 #define DEFAULT_POS_Z 13.54
 #define DEFAULT_POS_A 0.0
 
-//--------[ Player Spawn - Pelabuhan ]--------//
-#define SPAWN_PELABUHAN_X 1642.14
-#define SPAWN_PELABUHAN_Y -2333.15
-#define SPAWN_PELABUHAN_Z 13.54
-#define SPAWN_PELABUHAN_A 0.0
+//--------[ Player Spawn - Pelabuhan ]--------// 
+#define SPAWN_PELABUHAN_X  2363.8820
+#define SPAWN_PELABUHAN_Y -2546.6630 
+#define SPAWN_PELABUHAN_Z  3.0000 
+#define SPAWN_PELABUHAN_A  0.5671
 
 //--------[ Player Spawn - Bandara ]--------//
-#define SPAWN_BANDARA_X -2474.15
-#define SPAWN_BANDARA_Y -1666.88
-#define SPAWN_BANDARA_Z 33.48
-#define SPAWN_BANDARA_A 269.62
+#define SPAWN_BANDARA_X  1678.9465
+#define SPAWN_BANDARA_Y -2238.8400
+#define SPAWN_BANDARA_Z  13.5468
+#define SPAWN_BANDARA_A  170.6266
 
 //--------[ Macro ]--------//
 #define Fungsi:%0(%1) forward %0(%1); public %0(%1)

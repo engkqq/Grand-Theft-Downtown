@@ -23,9 +23,6 @@
     * None
 */
 
-//pragma jangan di hapus
-#pragma tabsize 0
-
 #define OPENMP_COMPAT
 #define YSI_NO_VERSION_CHECK        // By Y_Less (Untuk mencegah pemeriksaan versi YSI yang tidak perlu).
 #include <open.mp>                  // By Incognito (Open.MP Plugin).
