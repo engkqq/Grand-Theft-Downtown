@@ -1,7 +1,6 @@
 CMD:mypos(playerid, params[])
 {
-    if(pDataEngkq[playerid][pAdmin] < 1)
-        return PermissionError(playerid);
+    CheckAdmin(playerid, 1); // contoh mengimplementasi macro CheckAdmin untuk memeriksa level admin sebelum menjalankan perintah.
 
     new Float:x, Float:y, Float:z, Float:a;
     GetPlayerPos(playerid, x, y, z);

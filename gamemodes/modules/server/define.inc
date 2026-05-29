@@ -32,6 +32,7 @@
 #define Fungsi:%0(%1) forward %0(%1); public %0(%1)
 #define Forex(%0,%1) for(new %0 = 0; %0 < %1; %0++)
 #define PRESSED(%0) (((_:(newkeys) & _:(%0)) == _:(%0)) && ((_:(oldkeys) & _:(%0)) != _:(%0)))
+#define CheckAdmin(%0,%1) if(pDataEngkq[%0][pAdmin] < %1) return PermissionError(%0)
 
 //--------[ SendMessage ]--------//
 #define SendNearbyMessage SendProximityMessage															// Me Action.
